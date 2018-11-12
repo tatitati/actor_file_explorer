@@ -2,16 +2,16 @@ import akka.actor._
 import akka.routing._
 import java.io._
 
-class FilesCounter extends Actor {
+class ParentActor extends Actor {
 	var filesCount = 0L
 	var pending = 0
 	val system = ActorSystem("sample")
-	val fileExplorers = context.actorOf(RoundRobinPool(100).props(Props[FileExplorer]))
+	val fileExplorerActorsPool = context.actorOf(RoundRobinPool(500).props(Props[FilesCounterInSubfolderFolderActor]))
 
 	def receive = {
 		case dirName: String =>
-			pending - pending + 1
-			fileExplorers ! dirName
+			pending = pending + 1
+			fileExplorerActorsPool ! dirName
 
 		case count: Int =>
 			filesCount = filesCount + count
@@ -21,5 +21,6 @@ class FilesCounter extends Actor {
 				system.terminate()
 			}
 
+			sender ! PoisonPill
 	}
 }

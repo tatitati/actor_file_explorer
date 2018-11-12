@@ -2,7 +2,7 @@ import akka.actor._
 import java.io._
 
 
-class FileExplorer extends Actor {
+class FilesCounterInSubfolderFolderActor extends Actor {
 	def receive = {
 		case dirName: String =>
 			val file = new File(dirName)
@@ -16,7 +16,7 @@ class FileExplorer extends Actor {
 				filesCount = children.count { !_.isDirectory }
 			}
 
+			println(s"counting files in folder: ${dirName}: ${filesCount}")
 			sender ! filesCount
-
 	}
 }
