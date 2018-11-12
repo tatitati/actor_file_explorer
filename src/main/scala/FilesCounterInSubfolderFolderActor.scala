@@ -19,4 +19,8 @@ class FilesCounterInSubfolderFolderActor extends Actor {
 			println(s"counting files in folder: ${dirName}: ${filesCount}")
 			sender ! filesCount
 	}
+
+	override def postStop {
+		println("FilesCounterInSubfolderFolderActor::postStop called")
+	}
 }
