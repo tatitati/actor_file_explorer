@@ -7,7 +7,6 @@ sbt compile
 ## execute example
 
 ```
-# How many files are in the folder? (with concurrent actors)
 sbt "run /Users/tati/Desktop/scala_lab/counter_files"
 ```
 
