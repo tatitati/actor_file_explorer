@@ -21,6 +21,6 @@ class FilesCounterInSubfolderFolderActor extends Actor {
 	}
 
 	override def postStop {
-		println("FilesCounterInSubfolderFolderActor::postStop called ")
+		println("FilesCounterInSubfolderFolderActor::postStop called   ")
 	}
 }
